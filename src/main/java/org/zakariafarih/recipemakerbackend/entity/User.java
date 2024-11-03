@@ -10,7 +10,8 @@ import java.util.Set;
 public class User {
 
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Add this line
+    private Long id;
 
     @Column(unique = true, nullable = false)
     private String username;
@@ -29,11 +30,11 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

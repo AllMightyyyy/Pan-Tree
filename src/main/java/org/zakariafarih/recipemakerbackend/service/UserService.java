@@ -39,7 +39,7 @@ public class UserService {
         }
 
         User user = new User();
-        user.setId(idGeneratorService.generateUserId());
+        // Remove manual ID assignment
         user.setUsername(userDTO.getUsername());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         user.setEmail(userDTO.getEmail());
@@ -52,5 +52,11 @@ public class UserService {
         user.setRoles(roles);
 
         return userRepository.save(user);
+    }
+
+    public Long getUserIdByUsername(String username) throws Exception {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new Exception("User not found"));
+        return user.getId();
     }
 }

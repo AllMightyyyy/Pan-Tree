@@ -14,13 +14,13 @@ public class IdGeneratorService {
     @Autowired
     private RoleRepository roleRepository;
 
-    public synchronized Integer generateUserId() {
+    public synchronized Long generateUserId() {
         Integer maxId = userRepository.findMaxId();
-        return (maxId != null ? maxId : 0) + 1;
+        return (long) ((maxId != null ? maxId : 0) + 1);
     }
 
-    public synchronized Integer generateRoleId() {
+    public synchronized Long generateRoleId() {
         Integer maxId = roleRepository.findMaxId();
-        return (maxId != null ? maxId : 0) + 1;
+        return (long) ((maxId != null ? maxId : 0) + 1);
     }
 }

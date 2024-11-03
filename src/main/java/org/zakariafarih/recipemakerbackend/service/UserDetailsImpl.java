@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
 
-    private Integer id;
+    private Long id;
     private String username;
     private String email;
 
@@ -22,7 +22,7 @@ public class UserDetailsImpl implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     // Constructor
-    public UserDetailsImpl(Integer id, String username, String email, String password,
+    public UserDetailsImpl(Long id, String username, String email, String password,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
@@ -39,7 +39,7 @@ public class UserDetailsImpl implements UserDetails {
                 .collect(Collectors.toList());
 
         return new UserDetailsImpl(
-                user.getId(),
+                user.getId(), // No need for casting
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
@@ -48,7 +48,7 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     // Getters
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
